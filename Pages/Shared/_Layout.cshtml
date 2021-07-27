@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - smartcatalog</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/ipages.min.css">
+    <style>
+        .ipgs {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .ipgs-page .ipgs-data {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background:#876796;
+            color: #fff;
+            text-shadow: 1px 1px 0 #000;
+            border: 2px solid rgba(0,0,0,0.7);
+        }
+
+        .ipgs-page.ipgs-first .ipgs-data {
+            background-image: url(assets/images/book-cover-bg.jpg);
+            background-size: cover;
+        }
+
+            .ipgs-page.ipgs-first .ipgs-data a {
+                color: #fff;
+                text-shadow: 1px 1px 0 #000;
+                text-decoration: none;
+            }
+
+        .ipgs-page.ipgs-left .ipgs-data:before,
+        .ipgs-page.ipgs-right .ipgs-data:before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 100%;
+            pointer-event: none;
+        }
+
+        .ipgs-page.ipgs-left .ipgs-data:before {
+            right: 0;
+            background-image: linear-gradient(to left, rgba(226, 213, 204), transparent);
+        }
+
+        .ipgs-page.ipgs-right .ipgs-data:before {
+            left: 0;
+            background-image: linear-gradient(to right, rgba(226, 213, 204), transparent);
+        }
+
+        .ipgs-page .ipgs-data > div {
+            padding: 20px;
+            font-family: georgia, serif;
+            font-size: 18px;
+            text-align: left;
+        }
+
+            .ipgs-page .ipgs-data > div.txt-center {
+                text-align: center;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">smartcatalog</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/About">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - smartcatalog - <a asp-area="" asp-page="/About">About</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.ipages.js" asp-append-version="true"></script>
+
+    <script>$(document).ready(function () {
+            var options = {
+                bookEngine: 'TwoPageFlip',
+                responsive: true,
+                autoFit: false,
+                autoHeight: true,
+
+                padding: { top: 10, right: 10, bottom: 70, left: 10 },
+
+                pageNumbersHidden: [1, -1],
+
+                toolbarControls: [
+                    { type: 'share', active: false },
+                    { type: 'outline', active: false },
+                    { type: 'thumbnails', active: false },
+                    { type: 'gotofirst', active: true },
+                    { type: 'prev', active: true },
+                    { type: 'pagenumber', active: true },
+                    { type: 'next', active: true },
+                    { type: 'gotolast', active: true },
+                    { type: 'zoom-in', active: false },
+                    { type: 'zoom-out', active: false },
+                    { type: 'zoom-default', active: false },
+                    { type: 'optional', active: false },
+                    { type: 'download', active: false },
+                    { type: 'fullscreen', active: true, optional: false }
+                ]
+            };
+
+            $('#flipbook').ipages(options);
+        });</script>
+
+    <script>$('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })</script>
+</body>
+</html>
