@@ -1,2 +1,2 @@
 # smartcatalog
-A book flipping catalog in C#
+A book flipping catalog web app in C# 
